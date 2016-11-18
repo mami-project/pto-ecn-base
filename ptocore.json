@@ -1,0 +1,16 @@
+{
+  "input_formats": ["ps-ecn-fjson-bz2"],
+  "input_types": [],
+  "output_types": ["ecn.connectivity.works",
+   "ecn.connectivity.broken",
+   "ecn.connectivity.transient",
+   "ecn.connectivity.offline",
+   "ecn.negotiated",
+   "ecn.not_negotiated",
+   "ecn.ect_zero.seen",
+   "ecn.ect_one.seen",
+   "ecn.ce.seen"
+    ],
+  "command_line": ["python3", "master.py"],
+  "direct": true
+}
