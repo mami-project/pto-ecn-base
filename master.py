@@ -60,14 +60,15 @@ def main():
     # the RDD's returned by spark_uploads_direct() contain
     # the following KV pair: (filename, (metadata, file_content))
 
+    filenames = files.map(lambda x: x[0]).collect()
     print("--> filenames before filter = {}".format(filenames))
 
     # This should be removed at some point
     files = files.filter(
         lambda x: x[1][0]['meta']['msmntCampaign'] == 'modern-times')
-    filenames = files.map(lambda x: x[0]).collect()
     files = files.filter(lambda x: '2lQnF34XCk' not in x[0])
 
+    filenames = files.map(lambda x: x[0]).collect()
     print("--> filenames after filter = {}".format(filenames))
 
     flows = files.flatMap(unpack_files_to_flows)
