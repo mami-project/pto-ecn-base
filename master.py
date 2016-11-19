@@ -73,11 +73,11 @@ def main():
 
     flows = files.flatMap(unpack_files_to_flows)
 
-    print("number of flows = {}".format(flows.count()))
+    print("--> number of flows = {}".format(flows.count()))
 
     observations = flows.map(flow_to_observation)
 
-    print("number of observations = {}".format(observations.count()))
+    print("--> number of observations = {}".format(observations.count()))
 
     all_observations = observations.collect()
     all_observations_size_MiB = sys.getsizeof(all_observations) // 1024^2
