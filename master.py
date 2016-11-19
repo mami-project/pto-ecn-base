@@ -57,7 +57,7 @@ def main():
     ac.set_result_info_direct(max_action_id, upload_ids)
 
     files = ac.spark_uploads_direct()
-    print("--> number of files = {}".format(files.count())
+    print("--> number of files = {}".format(files.count()))
     # the RDD's returned by spark_uploads_direct() contain
     # the following KV pair: (filename, (metadata, file_content))
 
