@@ -35,6 +35,12 @@ def flow_to_observation(flow_record):
     dip = flow['dip']
     path = [sip, '*', dip]
 
+    value = dict()
+    try:
+        value['location'] = metadata['meta']['location']
+    except KeyError:
+        pass
+
     timedict = dict()
     timedict['from'] = dateutil.parser.parse(flow['time']['from'])
     timedict['to'] = dateutil.parser.parse(flow['time']['to'])
@@ -44,7 +50,7 @@ def flow_to_observation(flow_record):
     observation['path'] = path
     observation['conditions'] = flow['conditions']
     observation['sources'] = sources
-    observation['value'] = {}
+    observation['value'] = value
 
     return observation
 
