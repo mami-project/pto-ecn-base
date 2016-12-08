@@ -40,6 +40,10 @@ def flow_to_observation(flow_record):
         value['location'] = metadata['meta']['location']
     except KeyError:
         pass
+    try:
+        value['campaign'] = metadata['meta']['msmntCampaign']
+    except KeyError:
+        pass
 
     timedict = dict()
     timedict['from'] = dateutil.parser.parse(flow['time']['from'])
