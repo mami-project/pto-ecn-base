@@ -59,12 +59,15 @@ def flow_to_observation(flow_record):
     return observation
 
 def main():
+    print("--> Good morning! I am pto-ecn-base.")
     ac = AnalyzerContext(verbose=True)
     max_action_id, upload_ids = ac.action_set.direct()
 
     # analyze one upload per run
+    num_of_uploads = len(upload_ids)
     upload_ids = [upload_ids[0]] if len(upload_ids) > 0 else []
 
+    print("--> got {} uploads, but only processing one".format(num_of_uploads))
     print("--> running with max action id: {}".format(max_action_id))
     print("--> running with upload ids: {}".format(upload_ids))
     ac.set_result_info_direct(max_action_id, upload_ids)
@@ -81,11 +84,13 @@ def main():
     print("--> number of flows: {}".format(flows.count()))
 
     observations = flows.map(flow_to_observation)
-    print("--> snumber of observations: {}".format(observations.count()))
+    print("--> number of observations: {}".format(observations.count()))
 
     all_observations = observations.collect()
     for observation in all_observations:
         ac.temporary_coll.insert_one(observation)
+
+    print("--> goodnight!")
 
 if __name__ == "__main__":
     main()
